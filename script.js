@@ -8,13 +8,16 @@ function updateTime(timezone) {
   timeElement.innerHTML = moment.tz(timezone).format("HH:mm:ss");
   dateElement.innerHTML = moment.tz(timezone).format("D MMMM YYYY");
 }
-setInterval(updateTime, 1000, "Asia/Tokyo");
+setInterval(updateTime, 1000, "Arctic/Longyearbyen");
 
 //Select timezone
 function selectTimeZone(event) {
   let timezone = event.target.value;
   timezone = timezone.replace("_", " ");
   clock = document.querySelector(".clock");
+  if (timezone === "local") {
+    timezone = moment.tz.guess();
+  }
   function displaySelectedTime() {
     let time = moment.tz(timezone).format("HH:mm:ss");
     let date = moment.tz(timezone).format("D MMMM YYYY");
@@ -39,16 +42,16 @@ function displayTimeINDifferentCities() {
     "America/Chicago",
     "America/Lima",
     "America/Fortaleza",
-    "Africa/Monrovia",
-    "Europe/Paris",
-    "Europe/Berlin",
-    "Africa/Cairo",
+    "Atlantic/Reykjavik",
+    "Africa/Kinshasa",
+    "Europe/Sofia",
+    "Asia/Baghdad",
     "Asia/Tbilisi",
     "Asia/Yekaterinburg",
-    "Asia/Kabul",
     "Asia/Dhaka",
     "Asia/Kuala_Lumpur",
     "Asia/Tokyo",
+    "Australia/Canberra",
     "Pacific/Auckland",
   ];
 
