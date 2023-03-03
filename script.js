@@ -1,4 +1,3 @@
-let timezoneSelect = document.querySelector("#timezone");
 let timezoneElement = document.querySelector(".TZ");
 let timeElement = document.querySelector(".time");
 let dateElement = document.querySelector(".date");
@@ -11,10 +10,11 @@ function updateTime(timezone) {
 setInterval(updateTime, 1000, "Arctic/Longyearbyen");
 
 //Select timezone
+let timezoneSelect = document.querySelector("#timezone");
 function selectTimeZone(event) {
   let timezone = event.target.value;
   timezone = timezone.replace("_", " ");
-  clock = document.querySelector(".clock");
+  let clock = document.querySelector(".clock");
   if (timezone === "local") {
     timezone = moment.tz.guess();
   }
@@ -29,6 +29,7 @@ function selectTimeZone(event) {
         </ul>
       </div>`;
   }
+  displaySelectedTime();
   setInterval(displaySelectedTime, 1000);
 }
 
@@ -55,14 +56,14 @@ function displayTimeINDifferentCities() {
     "Pacific/Auckland",
   ];
 
-  let table1 = document.querySelector(".table1");
-  let table2 = document.querySelector(".table2");
-  let cities1 = `<tr>`;
-  let cities2 = `<tr>`;
+  let leftTable = document.querySelector(".leftTable");
+  let rightTable = document.querySelector(".rightTable");
+  let citiesLeft = `<tr>`;
+  let citiesRight = citiesLeft;
   places.forEach(function (city, index) {
     if (index < 8) {
-      cities1 =
-        cities1 +
+      citiesLeft =
+        citiesLeft +
         `
           <td>${city.replace("_", " ").split("/")[1]}</td>
           <th>${moment.tz(city).format("HH:mm")}</th>
@@ -71,13 +72,13 @@ function displayTimeINDifferentCities() {
         `;
     }
   });
-  cities1 = `<table>` + cities1 + `</table>`;
-  table1.innerHTML = cities1;
+  citiesLeft = `<table>` + citiesLeft + `</table>`;
+  leftTable.innerHTML = citiesLeft;
 
   places.forEach(function (city, index) {
     if (index > 7 && index < 16) {
-      cities2 =
-        cities2 +
+      citiesRight =
+        citiesRight +
         `
           <td>${city.replace("_", " ").split("/")[1]}</td>
           <th>${moment.tz(city).format("HH:mm")}</th>
@@ -86,8 +87,8 @@ function displayTimeINDifferentCities() {
         `;
     }
   });
-  cities2 = `<table>` + cities2 + `</table>`;
-  table2.innerHTML = cities2;
+  citiesRight = `<table>` + citiesRight + `</table>`;
+  rightTable.innerHTML = citiesRight;
 }
 displayTimeINDifferentCities();
-setIntervall(displayTimeINDifferentCities, 100);
+setInterval(displayTimeINDifferentCities, 100);
