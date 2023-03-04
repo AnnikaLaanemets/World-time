@@ -7,13 +7,14 @@ function updateTime(timezone) {
   timeElement.innerHTML = moment.tz(timezone).format("HH:mm:ss");
   dateElement.innerHTML = moment.tz(timezone).format("D MMMM YYYY");
 }
-setInterval(updateTime, 1000, "Arctic/Longyearbyen");
+setInterval(updateTime, 1000, "Africa/Johannesburg");
 
 //Select timezone
 let timezoneSelect = document.querySelector("#timezone");
+let calls = 0;
 function selectTimeZone(event) {
+  calls = calls + 1;
   let timezone = event.target.value;
-  timezone = timezone.replace("_", " ");
   let clock = document.querySelector(".clock");
   if (timezone === "local") {
     timezone = moment.tz.guess();
@@ -23,14 +24,31 @@ function selectTimeZone(event) {
     let date = moment.tz(timezone).format("D MMMM YYYY");
     clock.innerHTML = `<div class="clock">
         <ul>
-          <li class="TZ">${timezone}</li>
+          <li class="TZ">${timezone.replace("_", " ")}</li>
           <li class="time">${time}</li>
           <li class="date">${date}</li>
         </ul>
       </div>`;
   }
-  displaySelectedTime();
-  setInterval(displaySelectedTime, 1000);
+
+  function updateSelectedTime() {
+    if (calls <= 1) {
+      interval = setInterval(displaySelectedTime, 1000);
+    } else if (calls === 2) {
+      clearInterval(interval);
+      displaySelectedTime();
+      interval2 = setInterval(displaySelectedTime, 1000);
+    } else if (calls === 3) {
+      clearInterval(interval2);
+      displaySelectedTime();
+      interval3 = setInterval(displaySelectedTime, 1000);
+    } else {
+      clearInterval(interval3);
+      displaySelectedTime();
+    }
+  }
+
+  updateSelectedTime();
 }
 
 timezoneSelect.addEventListener("change", selectTimeZone);
@@ -91,4 +109,4 @@ function displayTimeINDifferentCities() {
   rightTable.innerHTML = citiesRight;
 }
 displayTimeINDifferentCities();
-setInterval(displayTimeINDifferentCities, 100);
+setInterval(displayTimeINDifferentCities, 1000);
