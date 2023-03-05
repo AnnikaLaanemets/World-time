@@ -71,7 +71,7 @@ function selectTimeZone(event) {
       .querySelector(".one")
       .setAttribute(
         "style",
-        "display:block;width:880px; margin: 12px; margin-block-start: 100px;"
+        "display:block;width:880px; margin: 12px; margin-block-start: 70px;"
       );
     document.querySelector(".time").style.fontSize = "84px";
     document.querySelector(".TZ").style.fontSize = "44px";
