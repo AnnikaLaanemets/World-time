@@ -1,13 +1,43 @@
-let timezoneElement = document.querySelector(".TZ");
-let timeElement = document.querySelector(".time");
-let dateElement = document.querySelector(".date");
+function setClock() {
+  let NewYork = document.querySelector("#NewYork");
+  NewYork.querySelector(".time").innerHTML = moment
+    .tz("America/New_York")
+    .format("HH:mm:ss");
+  NewYork.querySelector(".date").innerHTML = moment
+    .tz("America/New_York")
+    .format("D MMMM YYYY");
 
-function updateTime(timezone) {
-  timezoneElement.innerHTML = timezone;
-  timeElement.innerHTML = moment.tz(timezone).format("HH:mm:ss");
-  dateElement.innerHTML = moment.tz(timezone).format("D MMMM YYYY");
+  let Berlin = document.querySelector("#Berlin");
+  Berlin.querySelector(".time").innerHTML = moment
+    .tz("Europe/Berlin")
+    .format("HH:mm:ss");
+  Berlin.querySelector(".date").innerHTML = moment
+    .tz("Europe/Berlin")
+    .format("D MMMM YYYY");
+
+  let Novosibirsk = document.querySelector("#Novosibirsk");
+  Novosibirsk.querySelector(".time").innerHTML = moment
+    .tz("Asia/Novosibirsk")
+    .format("HH:mm:ss");
+  Novosibirsk.querySelector(".date").innerHTML = moment
+    .tz("Asia/Novosibirsk")
+    .format("D MMMM YYYY");
+
+  let Auckland = document.querySelector("#Auckland");
+  Auckland.querySelector(".time").innerHTML = moment
+    .tz("Pacific/Auckland")
+    .format("HH:mm:ss");
+  Auckland.querySelector(".date").innerHTML = moment
+    .tz("Pacific/Auckland")
+    .format("D MMMM YYYY");
 }
-setInterval(updateTime, 1000, "Africa/Johannesburg");
+
+setClock();
+setInterval(setClock, 1000);
+
+function reload() {
+  location.reload();
+}
 
 //Select timezone
 let timezoneSelect = document.querySelector("#timezone");
@@ -19,16 +49,34 @@ function selectTimeZone(event) {
   if (timezone === "local") {
     timezone = moment.tz.guess();
   }
+
   function displaySelectedTime() {
-    let time = moment.tz(timezone).format("HH:mm:ss");
-    let date = moment.tz(timezone).format("D MMMM YYYY");
-    clock.innerHTML = `<div class="clock">
+    clock.innerHTML = `<div class="one">
         <ul>
           <li class="TZ">${timezone.replace("_", " ")}</li>
-          <li class="time">${time}</li>
-          <li class="date">${date}</li>
+          <li class="time">${moment.tz(timezone).format("HH:mm:ss")}</li>
+          <li class="date">${moment.tz(timezone).format("D MMMM YYYY")}</li>
         </ul>
-      </div>`;
+      </div>
+      
+      <div class="back">🌆 Back to first page</div>
+      `;
+    document
+      .querySelector(".back")
+      .setAttribute(
+        "style",
+        "display:block; font-size: 38px; margin-block-start: 430px; margin-inline-start: -400px; color: #f73d93; cursor: pointer;"
+      );
+    document
+      .querySelector(".one")
+      .setAttribute(
+        "style",
+        "display:block;width:880px; margin: 12px; margin-block-start: 100px;"
+      );
+    document.querySelector(".time").style.fontSize = "84px";
+    document.querySelector(".TZ").style.fontSize = "44px";
+    document.querySelector(".date").style.fontSize = "44px";
+    document.querySelector(".back").addEventListener("click", reload);
   }
 
   function updateSelectedTime() {
@@ -42,8 +90,12 @@ function selectTimeZone(event) {
       clearInterval(interval2);
       displaySelectedTime();
       interval3 = setInterval(displaySelectedTime, 1000);
-    } else {
+    } else if (calls === 4) {
       clearInterval(interval3);
+      displaySelectedTime();
+      interval4 = setInterval(displaySelectedTime, 1000);
+    } else {
+      clearInterval(interval4);
       displaySelectedTime();
     }
   }
@@ -58,20 +110,20 @@ function displayTimeINDifferentCities() {
   places = [
     "America/Adak",
     "America/Vancouver",
+    "America/Denver",
     "America/Chicago",
-    "America/Lima",
+    "America/Caracas",
     "America/Fortaleza",
     "Atlantic/Reykjavik",
-    "Africa/Kinshasa",
     "Europe/Sofia",
     "Asia/Baghdad",
     "Asia/Tbilisi",
-    "Asia/Yekaterinburg",
+    "Asia/Ashgabat",
     "Asia/Dhaka",
     "Asia/Kuala_Lumpur",
     "Asia/Tokyo",
     "Australia/Canberra",
-    "Pacific/Auckland",
+    "Asia/Anadyr",
   ];
 
   let leftTable = document.querySelector(".leftTable");
