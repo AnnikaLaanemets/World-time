@@ -4,8 +4,8 @@ body {
 }
 
 .container {
-  width: 950px;
-  height: 1220px;
+  width: 860px;
+  height: 1260px;
   color: #7f8487;
   background: #16003b;
   padding: 20px;
@@ -28,13 +28,19 @@ select {
   font-size: 42px;
   padding: 8px;
   border-radius: 10px;
-  margin: 12px;
+  margin: 14px;
+  margin-bottom: 50px;
+}
+div {
+  margin: 0;
+  padding: 0;
 }
 .clock {
-  margin-block-start: -25px;
+  margin-inline-end: 50px;
   display: grid;
-  grid-template-columns: 460px 460px;
-  grid-template-rows: 245px 245px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 0;
 }
 
 li {
@@ -42,6 +48,10 @@ li {
   margin: 16px auto;
   font-size: 36px;
   text-align: center;
+}
+
+ul {
+  margin: 5px;
 }
 
 .time {
@@ -53,9 +63,7 @@ li {
 }
 
 table {
-  margin-inline-start: 2%;
-  margin-inline-end: 2%;
-  margin-block-start: 50px;
+  margin-block-start: 20px;
 }
 
 tr:nth-child(even) {
@@ -66,13 +74,13 @@ tr:hover {
 }
 th {
   color: #f73d93;
-  font-size: 38px;
-  padding: 13px;
+  font-size: 36px;
+  padding: 12px;
   margin: 2px;
 }
 td,
 th {
-  padding: 9px;
+  padding: 8px;
   border-radius: 5px;
   margin: 2px;
 }
@@ -84,4 +92,32 @@ footer {
 
 a {
   color: #eba9c8;
+}
+
+@media (max-width: 900px) {
+  .container {
+    width: 300px;
+  }
+  h1 {
+    font-size: 38px;
+  }
+  select {
+    font-size: 12px;
+  }
+  .clock {
+    width: 200px;
+    grid-template-columns: 1fr;
+    margin-inline-start: -30px;
+  }
+
+  .time {
+    font-size: 42px;
+  }
+
+  .table {
+    display: none;
+  }
+  a {
+    font-size: 16px;
+  }
 }

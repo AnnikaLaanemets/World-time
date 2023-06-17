@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Javascript app shows time in different timezones"
+    />
     <title>World time</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -455,31 +459,41 @@
         <option value="Pacific/Yap">Pacific/Yap</option>
       </select>
 
-      <div class="clock">
-        <ul id="NewYork">
-          <li class="TZ">America/New York</li>
-          <li class="time">08:54</li>
-          <li class="date">05.03.2023</li>
-        </ul>
-        <ul id="Berlin">
-          <li class="TZ">Europe/Berlin</li>
-          <li class="time">14:55</li>
-          <li class="date">05.03.2023</li>
-        </ul>
-        <ul id="Novosibirsk">
-          <li class="TZ">Asia/Novosibirsk</li>
-          <li class="time">20:55</li>
-          <li class="date">05.03.2023</li>
-        </ul>
-        <ul id="Auckland">
-          <li class="TZ">Pacific/Auckland</li>
-          <li class="time">02:56</li>
-          <li class="date">06.03.2023</li>
-        </ul>
-      </div>
-      <div>
-        <table class="leftTable" align="left"></table>
-        <table class="rightTable" align="right"></table>
+      <div class="timeElement">
+        <div class="clock">
+          <div>
+            <ul id="NewYork">
+              <li class="TZ">America/New York</li>
+              <li class="time">08:54</li>
+              <li class="date">05.03.2023</li>
+            </ul>
+          </div>
+          <div>
+            <ul id="Berlin">
+              <li class="TZ">Europe/Berlin</li>
+              <li class="time">14:55</li>
+              <li class="date">05.03.2023</li>
+            </ul>
+          </div>
+          <div>
+            <ul id="Novosibirsk">
+              <li class="TZ">Asia/Novosibirsk</li>
+              <li class="time">20:55</li>
+              <li class="date">05.03.2023</li>
+            </ul>
+          </div>
+          <div>
+            <ul id="Auckland">
+              <li class="TZ">Pacific/Auckland</li>
+              <li class="time">02:56</li>
+              <li class="date">06.03.2023</li>
+            </ul>
+          </div>
+        </div>
+        <div class="table">
+          <table class="leftTable" align="left"></table>
+          <table class="rightTable" align="right"></table>
+        </div>
       </div>
     </div>
     <footer>

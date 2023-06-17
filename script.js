@@ -39,19 +39,18 @@ function reload() {
   location.reload();
 }
 
-//Select timezone
 let timezoneSelect = document.querySelector("#timezone");
 let calls = 0;
 function selectTimeZone(event) {
   calls = calls + 1;
   let timezone = event.target.value;
-  let clock = document.querySelector(".clock");
+  let timeElement = document.querySelector(".timeElement");
   if (timezone === "local") {
     timezone = moment.tz.guess();
   }
 
   function displaySelectedTime() {
-    clock.innerHTML = `<div class="one">
+    timeElement.innerHTML = `<div id="selectedClock">
         <ul>
           <li class="TZ">${timezone.replace("_", " ")}</li>
           <li class="time">${moment.tz(timezone).format("HH:mm:ss")}</li>
@@ -59,23 +58,22 @@ function selectTimeZone(event) {
         </ul>
       </div>
       
-      <div class="back">🌆 Back to first page</div>
+      <a class="back">🌆 Back to first page</a>
       `;
+
     document
       .querySelector(".back")
       .setAttribute(
         "style",
-        "display:block; font-size: 38px; margin-block-start: 430px; margin-inline-start: -400px; color: #f73d93; cursor: pointer;"
+        "display:block; font-size: 24px; font-weight: 500; cursor: pointer; margin-top: 100px; margin: 30px;"
       );
     document
-      .querySelector(".one")
+      .querySelector("#selectedClock")
       .setAttribute(
         "style",
-        "display:block;width:880px; margin: 12px; margin-block-start: 70px;"
+        "display:block; width:100%; text-align:center; margin-left: -10px;"
       );
-    document.querySelector(".time").style.fontSize = "84px";
-    document.querySelector(".TZ").style.fontSize = "44px";
-    document.querySelector(".date").style.fontSize = "44px";
+
     document.querySelector(".back").addEventListener("click", reload);
   }
 
@@ -85,24 +83,11 @@ function selectTimeZone(event) {
     } else if (calls === 2) {
       clearInterval(interval);
       displaySelectedTime();
-      interval2 = setInterval(displaySelectedTime, 1000);
-    } else if (calls === 3) {
-      clearInterval(interval2);
-      displaySelectedTime();
-      interval3 = setInterval(displaySelectedTime, 1000);
-    } else if (calls === 4) {
-      clearInterval(interval3);
-      displaySelectedTime();
-      interval4 = setInterval(displaySelectedTime, 1000);
-    } else {
-      clearInterval(interval4);
-      displaySelectedTime();
     }
   }
 
   updateSelectedTime();
 }
-
 timezoneSelect.addEventListener("change", selectTimeZone);
 
 //fill tables with real-time data
@@ -160,5 +145,6 @@ function displayTimeINDifferentCities() {
   citiesRight = `<table>` + citiesRight + `</table>`;
   rightTable.innerHTML = citiesRight;
 }
+
 displayTimeINDifferentCities();
 setInterval(displayTimeINDifferentCities, 1000);
