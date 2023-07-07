@@ -80,7 +80,7 @@ function selectTimeZone(event) {
   function updateSelectedTime() {
     if (calls <= 1) {
       interval = setInterval(displaySelectedTime, 1000);
-    } else if (calls === 2) {
+    } else {
       clearInterval(interval);
       displaySelectedTime();
     }

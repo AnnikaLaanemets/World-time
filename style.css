@@ -11,7 +11,7 @@ body {
   padding: 20px;
   margin: 60px auto;
   border: 10px solid #413f42;
-  border-radius: 18px;
+  border-radius: 14px;
   font-family: "Libre Franklin", sans-serif;
   font-size: 34px;
   opacity: 0.7;
@@ -95,19 +95,33 @@ a {
 }
 
 @media (max-width: 900px) {
+  body {
+    margin: 0;
+  }
   .container {
     width: 300px;
+    padding: 10px;
+    margin: 20px auto;
+    border: 4px solid #413f42;
+    border-radius: 10px;
   }
   h1 {
-    font-size: 38px;
+    font-size: 34px;
   }
+
   select {
+    width: 180px;
     font-size: 12px;
+    margin: 10px auto;
   }
+
   .clock {
     width: 200px;
     grid-template-columns: 1fr;
-    margin-inline-start: -30px;
+    margin-inline-start: -10px;
+  }
+  li {
+    font-size: 24px;
   }
 
   .time {
@@ -117,7 +131,8 @@ a {
   .table {
     display: none;
   }
-  a {
-    font-size: 16px;
+  footer {
+    margin-top: 25px;
+    font-size: 12px;
   }
 }
